@@ -8,7 +8,7 @@ from langchain import VectorDBQA
 # pip install Chromadb  持久化向量数据库
 from langchain.document_loaders import DirectoryLoader
 from langchain.document_loaders import TextLoader
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 
 import glob
 from langchain.document_loaders import TextLoader
@@ -23,8 +23,7 @@ def directory_load(dir_path):
         documents.extend(loader.load())
         print("\n")
     return documents
-def create_embeddings():
-    documents = directory_load("./report")
+def create_embeddings(documents):
     print("data has loaded")
 
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=60, chunk_overlap=20)
@@ -46,14 +45,14 @@ def create_embeddings():
 
 def run_query(vectorstore, query):
     llm = ChatOpenAI(temperature=0.5, max_tokens=1024)
-    qa_stuff = VectorDBQA.from_chain_type(llm=llm, chain_type="map_reduce", k = 3, verbose=True, vectorstore=vectorstore, return_source_documents=True)
+    qa_stuff = VectorDBQA.from_chain_type(llm=llm, chain_type="stuff", k = 3, verbose=True, vectorstore=vectorstore, return_source_documents=True)
     print("qa_stuff: ",qa_stuff)
     response = qa_stuff({"query": query})
     return response
 
 def main():
-
-    retriever = create_embeddings()
+    documents = directory_load("./report")
+    retriever = create_embeddings(documents)
 
     query = "九一八事变后，国内的主要矛盾是什么？"
     #query = "How much change did Goku learn?(translate to chinese),summerize at 20words"
