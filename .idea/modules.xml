@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/llm-langchain-quick-start.iml" filepath="$PROJECT_DIR$/.idea/llm-langchain-quick-start.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/llm-langchain.iml" filepath="$PROJECT_DIR$/.idea/llm-langchain.iml" />
     </modules>
   </component>
 </project>
