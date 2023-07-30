@@ -29,11 +29,16 @@ def directory_load(dir_path):
     glob_path = dir_path + '/*.txt'
     print('glob_path: ', glob_path)
     for filename in glob.glob(glob_path):
-        print(filename)
-        if detect_encoding(filename) == 'GB2312':
-            convert_encoding(filename, filename)
-        loader = TextLoader(filename, encoding='UTF-8')
-        documents.extend(loader.load())
+        document_load(filename, documents)
+    return documents
+
+
+def document_load(filename, documents):
+    print(filename)
+    if detect_encoding(filename) == 'GB2312':
+        convert_encoding(filename, filename)
+    loader = TextLoader(filename, encoding='UTF-8')
+    documents.extend(loader.load())
     return documents
 
 
