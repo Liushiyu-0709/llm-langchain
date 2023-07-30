@@ -16,10 +16,10 @@ def detect_encoding(file_path):
 
 
 def convert_encoding(input_file, output_file):
-    with codecs.open(input_file, 'r', 'utf-8') as file:
+    with codecs.open(input_file, 'r', 'gbk') as file:
         content = file.read()
 
-    with codecs.open(output_file, 'w', 'gbk') as file:
+    with codecs.open(output_file, 'w', 'utf-8') as file:
         file.write(content)
 
 
@@ -30,15 +30,15 @@ def directory_load(dir_path):
     print('glob_path: ', glob_path)
     for filename in glob.glob(glob_path):
         print(filename)
-        if (detect_encoding(filename) == 'utf-8'):
+        if detect_encoding(filename) == 'GB2312':
             convert_encoding(filename, filename)
-        loader = TextLoader(filename)
+        loader = TextLoader(filename, encoding='UTF-8')
         documents.extend(loader.load())
     return documents
 
 
 def split_document(documents):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=20)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=0)
     texts = text_splitter.split_documents(documents)
     print("len texts: ", len(texts))
     return texts
