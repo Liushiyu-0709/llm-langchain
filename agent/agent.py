@@ -24,5 +24,6 @@ def creat_agent_split():
 def creat_agent_answer():
     tools = [VectorTool(), creat_web_search_tool()]
     llm = creat_llm()
-    agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True, max_iterations=10)
+    agent_instructions = '尽可能多的首先使用向量数据库，使用中文回答'
+    agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True, max_iterations=10, )
     return agent

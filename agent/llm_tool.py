@@ -28,7 +28,7 @@ def init():
 
 def creat_llm():
     init()
-    llm = OpenAI(temperature=0, max_tokens=2048)
+    llm = OpenAI(temperature=0, max_tokens=4096 * 2, model_name="gpt-3.5-turbo-16k")
     return llm
 
 

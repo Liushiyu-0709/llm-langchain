@@ -40,7 +40,8 @@ class VectorTool(BaseTool):
             {context}
 
             学生提出的问题: {question}
-            中文回答:
+            
+            Please answer in Chinese！用中文回答！Veuillez répondre en chinois！Antworten sie bitte auf chinesisch！Пожалуйста, ответьте по-китайски！
             """
         global docsearch
         print('make db successfully')
