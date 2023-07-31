@@ -1,4 +1,5 @@
 # Import things that are needed generically
+"""
 from langchain.agents import initialize_agent
 from langchain.agents import AgentType
 from langchain.memory import ConversationBufferMemory
@@ -27,3 +28,4 @@ def creat_agent_answer():
     agent_instructions = '尽可能多的首先使用向量数据库，使用中文回答'
     agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True, max_iterations=10, )
     return agent
+"""
